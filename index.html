@@ -7,23 +7,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E2C97E;
-    --gold-pale: #F5EDD0;
-    --gold-dim: #8C6E2F;
-    --black: #0A0A0A;
-    --off-black: #111111;
-    --dark: #1A1A1A;
-    --mid: #2C2C2C;
-    --surface: #161616;
-    --border: rgba(201,168,76,0.18);
-    --border-subtle: rgba(255,255,255,0.06);
-    --text-primary: #F0EAD6;
-    --text-secondary: rgba(240,234,214,0.55);
-    --text-dim: rgba(240,234,214,0.3);
-    --valid: #4CAF7D;
-    --invalid: #E05252;
-    --warning: #E09A42;
+    --gold: #B8922E;
+    --gold-light: #9A7520;
+    --gold-pale: #7A5C10;
+    --gold-dim: #C9A84C;
+    --black: #F7F3EC;
+    --off-black: #F0EAE0;
+    --dark: #E8E0D0;
+    --mid: #D4C9B0;
+    --surface: #FFFFFF;
+    --border: rgba(184,146,46,0.25);
+    --border-subtle: rgba(0,0,0,0.07);
+    --text-primary: #12080A;
+    --text-secondary: rgba(18,8,10,0.68);
+    --text-dim: rgba(18,8,10,0.45);
+    --valid: #2A7A52;
+    --invalid: #C0392B;
+    --warning: #B8660A;
     --font-display: 'DM Sans', sans-serif;
     --font-body: 'DM Sans', sans-serif;
   }
@@ -1643,7 +1643,7 @@
     justify-content: center;
     gap: 8px;
     padding: 24px 20px;
-    background: var(--surface);
+    background: #FFFFFF;
     border-top: 1px solid var(--border-subtle);
     z-index: 999;
   }
@@ -1651,7 +1651,7 @@
   .demo-btn {
     flex: 1;
     text-align: center;
-    background: var(--surface);
+    background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 10px 14px;
@@ -1662,21 +1662,13 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    transition: all 0.15s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
 
   .demo-btn:hover {
     background: var(--dark);
-    color: var(--gold-light);
-  }
-
-  .theme-btn {
-    flex: none !important;
-    width: 40px;
-    padding: 10px 0 !important;
-    font-size: 16px !important;
-    letter-spacing: 0 !important;
+    color: var(--gold);
   }
 
   @media (min-width: 1024px) {
@@ -1692,7 +1684,6 @@
     }
 
     .demo-btn { flex: none; }
-    .theme-btn { width: 36px; padding: 8px 0 !important; }
   }
 
   .demo-btn {
@@ -3493,57 +3484,6 @@
   updateDashClock();
   setInterval(updateDashClock, 1000);
 
-  // ---- Theme toggle ----
-  let isDark = true;
-
-  const lightVars = {
-    '--gold': '#B8922E',
-    '--gold-light': '#9A7520',
-    '--gold-pale': '#7A5C10',
-    '--gold-dim': '#C9A84C',
-    '--black': '#F7F3EC',
-    '--off-black': '#F0EAE0',
-    '--dark': '#E8E0D0',
-    '--mid': '#D4C9B0',
-    '--surface': '#FFFFFF',
-    '--border': 'rgba(184,146,46,0.25)',
-    '--border-subtle': 'rgba(0,0,0,0.07)',
-    '--text-primary': '#12080A',
-    '--text-secondary': 'rgba(18,8,10,0.68)',
-    '--text-dim': 'rgba(18,8,10,0.45)',
-    '--valid': '#2A7A52',
-    '--invalid': '#C0392B',
-    '--warning': '#B8660A',
-  };
-
-  const darkVars = {
-    '--gold': '#C9A84C',
-    '--gold-light': '#E2C97E',
-    '--gold-pale': '#F5EDD0',
-    '--gold-dim': '#8C6E2F',
-    '--black': '#0A0A0A',
-    '--off-black': '#111111',
-    '--dark': '#1A1A1A',
-    '--mid': '#2C2C2C',
-    '--surface': '#161616',
-    '--border': 'rgba(201,168,76,0.18)',
-    '--border-subtle': 'rgba(255,255,255,0.06)',
-    '--text-primary': '#F0EAD6',
-    '--text-secondary': 'rgba(240,234,214,0.55)',
-    '--text-dim': 'rgba(240,234,214,0.3)',
-    '--valid': '#4CAF7D',
-    '--invalid': '#E05252',
-    '--warning': '#E09A42',
-  };
-
-  function toggleTheme() {
-    isDark = !isDark;
-    const vars = isDark ? darkVars : lightVars;
-    const root = document.documentElement;
-    Object.entries(vars).forEach(([key, val]) => root.style.setProperty(key, val));
-    document.getElementById('theme-toggle-btn').textContent = isDark ? '🌓' : '☀️';
-  }
-
   // Auto-run preloader on initial load (customer page is default)
   runPreloader(() => { preloaderDone = true; });
 </script>
@@ -3551,7 +3491,6 @@
 <div class="demo-nav">
   <button class="demo-btn" onclick="showPage('customer')">👁 Customer</button>
   <button class="demo-btn" onclick="showPage('login')">🔐 Admin</button>
-  <button class="demo-btn theme-btn" id="theme-toggle-btn" onclick="toggleTheme()">🌓</button>
 </div>
 
 </body>
