@@ -1250,7 +1250,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 22px;
+    padding: 16px 14px;
     border-bottom: 1px solid var(--border-subtle);
   }
 
@@ -1279,14 +1279,14 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--text-dim);
-    padding: 12px 22px;
+    padding: 12px 14px;
     text-align: left;
     border-bottom: 1px solid var(--border-subtle);
     font-weight: 400;
   }
 
   .data-table td {
-    padding: 13px 22px;
+    padding: 11px 14px;
     font-size: 13px;
     color: var(--text-secondary);
     border-bottom: 1px solid rgba(255,255,255,0.03);
@@ -1922,10 +1922,85 @@
     .two-col { grid-template-columns: 1fr; }
   }
 
-  @media (max-width: 600px) {
-    .sidebar { width: 0; overflow: hidden; }
-    .main-content { margin-left: 0; padding: 20px; }
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 260px;
+      z-index: 200;
+    }
+
+    .sidebar.open { transform: translateX(0); }
+
+    .main-content {
+      margin-left: 0;
+      padding: 16px;
+      padding-top: 72px;
+    }
+
+    /* Overlay */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 199;
+      backdrop-filter: blur(2px);
+    }
+    .sidebar-overlay.show { display: block; }
+
+    /* Mobile sticky header */
+    .mobile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 52px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 18px;
+      z-index: 198;
+    }
+
+    .mobile-header-brand {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+    }
+
+    .mobile-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+
+    .mobile-hamburger:hover { background: rgba(255,255,255,0.06); }
+
+    .mobile-hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--gold-light);
+      border-radius: 2px;
+    }
+
     .stats-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (min-width: 769px) {
+    .mobile-header { display: none; }
+    .sidebar-overlay { display: none !important; }
+    .hamburger-btn { display: none; }
   }
 </style>
 </head>
@@ -2305,6 +2380,9 @@
 <!-- ==================== PAGE: DASHBOARD ==================== -->
 <div id="page-dashboard" class="page">
 
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
   <!-- Sidebar -->
   <div class="sidebar">
     <div class="sidebar-brand">
@@ -2342,6 +2420,14 @@
       </div>
       <button class="btn-logout" onclick="showPage('login')">Keluar</button>
     </div>
+  </div>
+
+  <!-- Mobile Header (hidden on desktop) -->
+  <div class="mobile-header">
+    <div class="mobile-header-brand">Pundimas</div>
+    <button class="mobile-hamburger" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 
   <!-- Main Content -->
@@ -2986,6 +3072,28 @@
     nextBtn.onclick = () => { detailCurrentPage++; renderDetailTable(); };
     ctrl.appendChild(nextBtn);
   }
+
+  // ---- Mobile sidebar toggle ----
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  }
+
+  function closeSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  }
+
+  // Close sidebar when a nav item is clicked on mobile
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (window.innerWidth <= 768) closeSidebar();
+    });
+  });
 
   // ---- Page routing ----
   function showPage(name) {
