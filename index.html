@@ -1938,6 +1938,84 @@
     cursor: pointer;
   }
 
+  /* ===================== MOBILE TABLE CARDS ===================== */
+  .mobile-cards { display: none; }
+
+  @media (max-width: 768px) {
+    /* Hide tables on mobile */
+    .data-table { display: none; }
+    .data-table + .data-table { display: none; }
+
+    /* Show mobile cards */
+    .mobile-cards { display: block; }
+
+    .mobile-card {
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .mobile-card:last-child { border-bottom: none; }
+
+    .mobile-card-row1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .mobile-card-row2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .mobile-card-row3 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-card-no {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    .mobile-card-scan-no {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    .mobile-card-serial {
+      font-family: 'DM Sans', monospace;
+      font-size: 13px;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border-bottom: 1px dashed rgba(201,168,76,0.4);
+    }
+
+    .mobile-card-ip {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .mobile-card-loc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    .mobile-card-date {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-align: right;
+    }
+  }
+
   /* Responsive */
   @media (max-width: 900px) {
     .stats-row { grid-template-columns: 1fr 1fr; }
@@ -2657,10 +2735,110 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- Mobile cards for scan history -->
+        <div class="mobile-cards">
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-no">No. 001</span>
+              <span class="mobile-card-scan-no">Scan ke- 10</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-008821')">PMD-AU-008821</span>
+              <span class="badge valid"><span class="badge-dot"></span>Valid</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">114.122.xx.xx</span>
+              <span class="mobile-card-loc">Bandung, ID · 14:32</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-no">No. 002</span>
+              <span class="mobile-card-scan-no">Scan ke- 28</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-005512')">PMD-AU-005512</span>
+              <span class="badge warning"><span class="badge-dot"></span>Anomali</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">36.81.xx.xx</span>
+              <span class="mobile-card-loc">Jakarta, ID · 14:28</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-no">No. 003</span>
+              <span class="mobile-card-scan-no">Scan ke- 1</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-012003')">PMD-AU-012003</span>
+              <span class="badge valid"><span class="badge-dot"></span>Valid</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">180.252.xx.xx</span>
+              <span class="mobile-card-loc">Surabaya, ID · 14:21</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-no">No. 004</span>
+              <span class="mobile-card-scan-no">Scan ke- 5</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-001198')">PMD-AU-001198</span>
+              <span class="badge valid"><span class="badge-dot"></span>Valid</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">203.130.xx.xx</span>
+              <span class="mobile-card-loc">Medan, ID · 14:17</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-no">No. 005</span>
+              <span class="mobile-card-scan-no">Scan ke- 2</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-009934')">PMD-AU-009934</span>
+              <span class="badge valid"><span class="badge-dot"></span>Valid</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">125.166.xx.xx</span>
+              <span class="mobile-card-loc">Yogyakarta, ID · 14:05</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-no">No. 006</span>
+              <span class="mobile-card-scan-no">Scan ke- 1</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-003341')">PMD-AU-003341</span>
+              <span class="badge valid"><span class="badge-dot"></span>Valid</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">118.98.xx.xx</span>
+              <span class="mobile-card-loc">Makassar, ID · 13:58</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-no">No. 007</span>
+              <span class="mobile-card-scan-no">Scan ke- 47</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-007720')">PMD-AU-007720</span>
+              <span class="badge invalid"><span class="badge-dot"></span>Kritis</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">110.137.xx.xx</span>
+              <span class="mobile-card-loc">Semarang, ID · 13:44</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- ---- VIEW: ANOMALY ---- -->
     <div id="view-anomaly" class="dashboard-view">
       <div class="page-header">
         <div>
@@ -2816,10 +2994,96 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- Mobile cards for gold list -->
+        <div class="mobile-cards">
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-008821')">PMD-AU-008821</span>
+              <span class="badge valid"><span class="badge-dot"></span>Normal</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-ip">10 gram · 999.9 ‰ · 24K</span>
+              <span class="mobile-card-date">14 Mar 2024</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">B-2024-03-07</span>
+              <span class="mobile-card-loc">10 scan</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-005512')">PMD-AU-005512</span>
+              <span class="badge warning"><span class="badge-dot"></span>Anomali</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-ip">5 gram · 999.9 ‰ · 24K</span>
+              <span class="mobile-card-date">12 Feb 2024</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">B-2024-02-12</span>
+              <span class="mobile-card-loc" style="color:var(--warning)">28 scan</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-012003')">PMD-AU-012003</span>
+              <span class="badge valid"><span class="badge-dot"></span>Normal</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-ip">1 gram · 999.9 ‰ · 24K</span>
+              <span class="mobile-card-date">1 Apr 2024</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">B-2024-04-01</span>
+              <span class="mobile-card-loc">1 scan</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-001198')">PMD-AU-001198</span>
+              <span class="badge valid"><span class="badge-dot"></span>Normal</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-ip">25 gram · 999.9 ‰ · 24K</span>
+              <span class="mobile-card-date">20 Nov 2023</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">B-2023-11-20</span>
+              <span class="mobile-card-loc">5 scan</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-007720')">PMD-AU-007720</span>
+              <span class="badge invalid"><span class="badge-dot"></span>Kritis</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-ip">50 gram · 999.9 ‰ · 24K</span>
+              <span class="mobile-card-date">8 Jan 2024</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">B-2024-01-08</span>
+              <span class="mobile-card-loc" style="color:var(--invalid)">47 scan</span>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <div class="mobile-card-row1">
+              <span class="mobile-card-serial" onclick="openGoldDetail('PMD-AU-009934')">PMD-AU-009934</span>
+              <span class="badge valid"><span class="badge-dot"></span>Normal</span>
+            </div>
+            <div class="mobile-card-row2">
+              <span class="mobile-card-ip">2 gram · 999.9 ‰ · 24K</span>
+              <span class="mobile-card-date">22 Mar 2024</span>
+            </div>
+            <div class="mobile-card-row3">
+              <span class="mobile-card-ip">B-2024-03-22</span>
+              <span class="mobile-card-loc">2 scan</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- ---- VIEW: GOLD DETAIL ---- -->
     <div id="view-gold-detail" class="dashboard-view">
       <button class="back-btn" id="detail-back-btn">← Kembali</button>
 
